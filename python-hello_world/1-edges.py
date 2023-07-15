@@ -1,7 +1,8 @@
-word_first_3 =" Holberton"
-print ( word_first_3 [ : 4])
-word_last_2 ="Holberton"
-print ( word_last_2 [7 : ])
-middle_word = "Holberton"
-print( middle_word [1 : 8 ])
+word = "Holberton"
+word_first_3 = word[:3]
+word_last_2 = word[-2:]
+middle_word = word[1:-1]
+print("First 3 letters: {}".format(word_first_3))
+print("Last 2 letters: {}".format(word_last_2))
+print("Middle word: {}".format(middle_word))
 

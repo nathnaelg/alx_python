@@ -1,8 +1,11 @@
+#!/usr/bin/python3
+"""Making request module"""
 import requests
-import sys
 
-url = sys.argv[1]
-response = requests.get(url)
+if __name__ == "__main__":
 
-x_request_id = response.headers.get('X-Request-Id')
-print(x_request_id)
+    response = requests.get('https://alu-intranet.hbtn.io/status')
+
+    print("Body response:")
+    print("\t- type: {}".format(type(response.text)))
+    print("\t- content: {}".format(response.text))

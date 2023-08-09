@@ -1,6 +1,11 @@
+#!/usr/bin/python3
+"""Making request module"""
 import requests
-url = "https://alu-intranet.hbtn.io/status"
-response = requests.get(url)
-print("Body response:")
-print("    - type:", type(response.text))
-print("    - content:", response.text)
+
+if __name__ == "__main__":
+
+    response = requests.get('https://alu-intranet.hbtn.io/status')
+
+    print("Body response:")
+    print("\t- type: {}".format(type(response.text)))
+    print("\t- content: {}".format(response.text))

@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""A script for fetches https://alx-intranet.hbtn.io/status status
+"""A script that:
+- sends a request to the URL and displays the value of the variable
 """
 import requests
+import sys
 
-if __name__ == '__main__':
-
-    url = 'https://alx-intranet.hbtn.io/status'
-    result = requests.get(url)
-    print("Body response:")
-    print("\t- type: {}".format(type(result.text)))
-    print("\t- content: {}".format(result.text))
+if __name__ == "__main__":
+    url = sys.argv[1]
+    response = requests.get(url)
+    result = response.headers.get("X-Request-Id")
+    print(result)

@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-"""Making request module"""
+"""A script for fetches https://alx-intranet.hbtn.io/status status
+"""
 import requests
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-    response = requests.get('https://alu-intranet.hbtn.io/status')
-
+    url = 'https://alx-intranet.hbtn.io/status'
+    result = requests.get(url)
     print("Body response:")
-    print("\t- type: {}".format(type(response.text)))
-    print("\t- content: {}".format(response.text))
+    print("\t- type: {}".format(type(result.text)))
+    print("\t- content: {}".format(result.text))

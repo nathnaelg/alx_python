@@ -1,31 +1,36 @@
 #!/usr/bin/python3
+"""
+Python script to export data in the CSV format.
+"""
+
 import csv
 import requests
 import sys
 
 
-def export_to_CSV(employee_id):
-    # The API requests and data extraction will remain the same as in the provided script.
+def export_to_CSV(user_id):
+    employee_name = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}".format(user_id)
+    ).json()["name"]
+    tasks = requests.get(
+        "https://jsonplaceholder.typicode.com/users/{}/todos".format(user_id)
+    ).json()
 
-    # Get employee details
-    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    user_response = requests.get(user_url)
-    user_data = user_response.json()
-    employee_name = user_data["username"]
+    tasks_data = []
 
-    # Get TODO list for the employee
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    todos_response = requests.get(todos_url)
-    todos_data = todos_response.json()
+    for task in tasks:
+        tasks_data.append(
+            [
+                str(user_id),
+                employee_name,
+                task["completed"],
+                task["title"],
+            ]
+        )
 
-    # Create or overwrite the CSV file
-    with open(f"{employee_id}.csv", "w", newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-        for task in todos_data:
-            writer.writerow([employee_id, employee_name,
-                            task["completed"], task["title"]])
-
-    print(f"Data exported to {employee_id}.csv")
+    with open(str(user_id) + ".csv", "w", encoding="UTF8", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerows(tasks_data)
 
 
 if __name__ == "__main__":
